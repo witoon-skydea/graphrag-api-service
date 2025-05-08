@@ -1,0 +1,19 @@
+{
+  "companies": {
+    "default": {
+      "name": "Default Company",
+      "description": "Default company for RAG system",
+      "db_dir": "db/default",
+      "llm_model": "llama3:8b",
+      "embedding_model": "mxbai-embed-large:latest"
+    },
+    "toc": {
+      "name": "TOC",
+      "description": "TOC Company for Testing",
+      "db_dir": "db/toc",
+      "llm_model": "llama3:70b",
+      "embedding_model": "mxbai-embed-large:latest"
+    }
+  },
+  "active_company": "toc"
+}

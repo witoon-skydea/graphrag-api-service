@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  graphrag-api:
+    build: .
+    container_name: graphrag-api
+    restart: unless-stopped
+    ports:
+      - "6989:6989"
+    volumes:
+      - ./db:/app/db
+      - ./companies:/app/companies
+      - ./graph:/app/graph
+      - ./data:/app/data
+      - ./prompts:/app/prompts
+      - ./static:/app/static
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LOGLEVEL=INFO
+    # If using a remote Ollama instance, uncomment and set this
+    # - OLLAMA_API_BASE=http://ollama:11434
+    networks:
+      - graphrag-network
+
+  # Uncomment to include a local Ollama instance if needed
+  # ollama:
+  #   image: ollama/ollama:latest
+  #   container_name: ollama
+  #   restart: unless-stopped
+  #   ports:
+  #     - "11434:11434"
+  #   volumes:
+  #     - ./ollama:/root/.ollama
+  #   networks:
+  #     - graphrag-network
+
+networks:
+  graphrag-network:
+    driver: bridge
